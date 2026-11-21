@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Galería · OMI Yucatán</title>
+  <meta name="description" content="Galería de fotografías de la OMI Yucatán.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<nav aria-label="Navegación principal">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="Galeria/Logo.jpg" alt="Logo OMI Yucatán">
+      <span>OMI <b>Yucatán</b></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="avisos.html">Avisos</a>
+      <a href="convocatoria.html">Convocatoria</a>
+      <a href="entrenamiento.html">Entrenamiento</a>
+      <a href="resultados.html">Resultados</a>
+      <a href="galeria.html" class="active">Galería</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </div>
+</nav>
+<main>
+  <header class="page-header">
+    <div class="wrap">
+      <h1>Galería de fotos</h1>
+      <p>Momentos de la OMI en Yucatán: selectivos, entrenamientos, ceremonias y competencias nacionales.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="gallery-tabs">
+        <button class="tab-btn active" type="button" data-year="2026">Edición 2026</button>
+        <button class="tab-btn" type="button" data-year="2025">Edición 2025</button>
+        <button class="tab-btn" type="button" data-year="all">Todas</button>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-label="Foto ampliada">
+  <button id="lbx" type="button" aria-label="Cerrar">×</button>
+  <img id="lbi" alt="Foto ampliada">
+</div>
+<footer>
+  <div class="wrap">
+    <p>Olimpiada Mexicana de Informática · Delegación Yucatán (Facultad de Matemáticas UADY – SEGEY).</p>
+    <p>Las fechas y requisitos válidos son los de la convocatoria oficial vigente.</p>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
