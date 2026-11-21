@@ -812,3 +812,63 @@ footer {
 footer p {
   margin: 0 0 4px;
 }
+
+/* Ajuste móvil: evitar espacio azul gigante en pantallas altas */
+@media (max-width: 819px) {
+  .hero {
+    min-height: auto;
+    padding: 36px 0 44px;
+  }
+  .hero h1 {
+    font-size: 46px;
+  }
+  .hero-logo-box {
+    max-width: 340px;
+  }
+}
+
+/* Tarjeta destacada para Listas oficiales (Resultados) */
+.featured-box {
+  background: var(--surface);
+  border: 2px solid var(--gold);
+  border-top: 6px solid var(--gold);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px #0001;
+}
+
+.featured-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: #12233f;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.featured-box .pdf-list a {
+  font-size: 16.5px;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-left: 4px solid var(--teal);
+}
+
+.featured-box .pdf-list a:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+/* Medallistas en formato más discreto (acordeón) */
+.res-details summary {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 19px;
+}
+
+.res-details .people {
+  margin-top: 10px;
+}
