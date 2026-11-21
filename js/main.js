@@ -130,4 +130,86 @@
 
     renderGallery('2026');
   }
+
+  // 3. Fondo decorativo de nodos y grafos en la portada (index.html)
+  var canvas = document.getElementById('hero-graph');
+  if (canvas && canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    var nodes = [];
+    var rafId = null;
+
+    function initGraph() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      var w = rect.width;
+      var h = rect.height;
+      var count = Math.max(26, Math.min(60, Math.floor((w * h) / 18000)));
+      nodes = [];
+      for (var i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: Math.random() * 2 + 1.8,
+          gold: Math.random() < 0.22
+        });
+      }
+    }
+
+    function drawGraph() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      var w = rect.width;
+      var h = rect.height;
+      ctx.clearRect(0, 0, w, h);
+
+      var maxDist = 155;
+      for (var i = 0; i < nodes.length; i++) {
+        var a = nodes[i];
+        a.x += a.vx;
+        a.y += a.vy;
+        if (a.x < 0 || a.x > w) a.vx *= -1;
+        if (a.y < 0 || a.y > h) a.vy *= -1;
+
+        for (var j = i + 1; j < nodes.length; j++) {
+          var b = nodes[j];
+          var dx = a.x - b.x;
+          var dy = a.y - b.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            var alpha = (1 - dist / maxDist) * 0.28;
+            ctx.strokeStyle = 'rgba(60, 196, 194, ' + alpha.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (var k = 0; k < nodes.length; k++) {
+        var n = nodes[k];
+        ctx.fillStyle = n.gold ? 'rgba(242, 183, 5, 0.55)' : 'rgba(60, 196, 194, 0.55)';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      rafId = window.requestAnimationFrame(drawGraph);
+    }
+
+    initGraph();
+    drawGraph();
+    window.addEventListener('resize', function () {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      initGraph();
+      drawGraph();
+    });
+  }
+
 })();
